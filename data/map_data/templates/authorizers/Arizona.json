@@ -1,0 +1,6 @@
+{
+	"fakeAuthorizerName": {
+		"name": "Fake Authorizer Name",
+		"districts_served": ["HolbrookUnifiedDistrict", "TubaCityUnifiedDistrict", "WillcoxUnifiedDistrict", "LittlefieldUnifiedDistrict"]
+	}
+}

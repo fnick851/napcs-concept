@@ -1,0 +1,446 @@
+﻿ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>NAPCS dashboard</title>
+ 	<meta name="description" content="US national public charter schools data dashboard that gathers all charter school statistics and provides visualizations for insights.">
+ 	<meta charset="utf-8">
+ 	<!-- If IE use the latest rendering engine -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Set the page to the width of the device and set the zoon level -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- bootstrap css 3.3.7 -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ 	<!-- style for UIs -->
+ 	<link rel="stylesheet" type="text/css" href="css/ui_style.css">
+ 	<!-- style for charts -->
+ 	<link rel="stylesheet" type="text/css" href="css/chart_style.css">
+ 	<!-- CSS loadng anime -->
+ 	<link rel="stylesheet" type="text/css" href="css/loading.css">
+ 	<!-- style for maps -->
+    <link rel="stylesheet" type="text/css" href="css/map_style.css">
+ 	<!-- font-awesome icons -->
+ 	<script src="https://use.fontawesome.com/e3d29fb3c7.js"></script>
+ 	<!-- jquery -->
+ 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+	<!-- bootstrap js 3.3.7 -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+ 	<!-- D3 -->
+ 	<script src="https://d3js.org/d3.v4.min.js"></script>
+ 	<!-- leaflet CSS and JS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<!-- jquery UI -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+  <!-- adobe typekit -->
+  <script src="https://use.typekit.net/ibj3yux.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <!--[if IE]>
+	<style>
+	    .nav_fix {
+			height: 113px;
+			-webkit-transition: all 0.4s ease-in-out;
+		  	-moz-transition: all 0.4s ease-in-out;
+		}
+		.shrinkNav_fix {
+			height: 83px;
+		}
+	</style>
+	<![endif]-->
+     <style>
+               .ui-autocomplete {
+                   max-height: 200px;
+                   width: 350px;
+                   overflow-y: auto;
+                   /* prevent horizontal scrollbar */
+                   overflow-x: hidden;
+               }
+               /* IE 6 doesn't support max-height
+         * we use height instead, but this forces the menu to always be this tall
+         */
+               * html .ui-autocomplete {
+                   height: 100px;
+               }
+     </style>
+
+ </head>
+ <body>
+ 	<div class="header">
+ 		<div class="header_center container">
+			<a class=".home_tab" href="index.html"><img class="header-img" src="img/napcs_logo.png"></a>
+	 		<div class="search_box">
+	 			<form class="search_form">
+	 				<input type="text" name="search" id="search"  placeholder="  Search" autocomplete="off">
+	 				<a id="go_search"><i class="fa fa-search" aria-hidden="true" style="color: white; font-size: 17pt;"></i></a>
+	 			</form>
+	 		</div><!-- /.search_box -->
+ 		</div>
+ 	</div><!-- /.header -->
+ 	<div class="nav_fix"></div>
+ 	<div class="nav navbar navbar-default">
+    <div class="container">
+      <div class="row">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div><!-- /.navbar-header -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav nav-justified">
+  			<li class="national_link"><a href="index.html"><p class="tab_label">National</p></a></li>
+  			<li class="state_link"><a><p class="tab_label">State</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 10px 0px 10px 30px;">
+  						<select id="state" style="display: block; margin-bottom: 1px;">
+  							<option value="" selected disabled>Choose a State</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit state_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  			<li class="congressional_link"><a><p class="tab_label">Congressional District</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 5px 0px 5px 30px;">
+  						<select id="congressional" style="display: block; margin-bottom: 1px;" onchange="if(this.selectedIndex>-1)append_sub(this);">
+  							<option value="" selected disabled>Choose a State</option>
+  						</select>
+  						<select id="congressional-sub" style="display: block; margin-bottom: 1px;" disabled>
+  							<option value="" selected disabled>Choose a Congressional District</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit congress_dis_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  			<li class="school_dis_link"><a><p class="tab_label">School District</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 5px 0px 5px 30px;">
+  						<select id="school-dis" style="display: block; margin-bottom: 1px;" onchange="if(this.selectedIndex>-1)append_sub(this);">
+  							<option value="" selected disabled>Choose a State</option>
+  						</select>
+  						<select id="school-dis-sub" style="display: block; margin-bottom: 1px;" disabled>
+  							<option value="" selected disabled>Choose a School District</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit school_dis_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  			<li class="mgmt_company_link"><a><p class="tab_label">Management Company</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 5px 0px 5px 30px;">
+  						<select id="mgmt" style="display: block; margin-bottom: 1px;" onchange="if(this.selectedIndex>-1)append_sub(this);">
+  							<option value="" selected disabled>Choose a Management Type</option>
+  							<option value="all">All</option>
+  						 	<option value="cmo">CMO</option>
+  						  	<option value="emo">EMO</option>
+  						  	<option value="other">Free-Standing</option>
+  						</select>
+  						<select id="mgmt-sub" style="display: block; margin-bottom: 1px;" disabled>
+  							<option value="" selected disabled>Choose a Management Company</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit mgmt_company_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  			<li class="authorizer_link"><a><p class="tab_label">Authorizer</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 5px 0px 5px 30px;">
+  						<select id="authorizer" style="display: block; margin-bottom: 1px;" onchange="if(this.selectedIndex>-1)append_sub(this);">
+  							<option value="" selected disabled>Choose a State</option>
+  						</select>
+  						<select id="authorizer-sub" style="display: block; margin-bottom: 1px;" disabled>
+  							<option value="" selected disabled>Choose an Authorizer</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit authorizer_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  			<li class="school_link"><a><p class="tab_label">School</p></a><form class="dropdown_form">
+  				<div>
+  					<div class="nav_input_field" style="display: inline-block;float: left;margin: 5px 0px 5px 30px;">
+  						<select id="school" style="display: block; margin-bottom: 1px;" onchange="if(this.selectedIndex>-1)append_sub(this);">
+  							<option value="" selected disabled>Choose a State</option>
+  						</select>
+  						<select id="school-sub" style="display: block; margin-bottom: 1px;" disabled>
+  							<option value="" selected disabled>Choose a School</option>
+  						</select>
+  					</div>
+  					<div class="nav_submit school_go">
+  						<span style="display:inline-block; margin-top: 16px;">Go<span>
+  					</div>
+  				</div>
+  			</form></li>
+  		</ul>
+    </div><!-- /.collapse -->
+  </div><!-- /.row -->
+  </div><!-- /.container -->
+	</div><!-- /.nav -->
+
+
+	<!-- container for note modal page -->
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close">&times;</span>
+	      <h3>Data</h3>
+	    </div>
+	    <div class="modal-body">
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	      <p>Data content</p>
+	    </div>
+	    <div class="modal-header">
+	      <h3>Methodology</h3>
+	    </div>
+	    <div class="modal-body">
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	      <p>Methodology content</p>
+	    </div>
+	    <div class="modal-header">
+	      <h3>Glossary</h3>
+	    </div>
+	    <div class="modal-body">
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	      <p>Glossary content</p>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- container for download snapshot button -->
+	<div class="note top">
+    <div class="container">
+  		<div class="note_inner snapshot_button_row">
+  			<a class="snapshot_button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Download Snapshot</a>
+  			<a id="note_page_link" title="Info on methodology/data source/glossary"><i class="fa fa-question-circle-o" aria-hidden="true" style="font-size:20px; transform:translateY(2px);"></i></a>
+  		</div>
+    </div>
+	</div>
+
+  <div class="side_tab">
+    <a id="student_tab"><div class="vertical_text student_text">Schools</div></a>
+    <a id="school_tab" class="not_clicked"><div class="vertical_text school_text">Students</div></a>
+  </div>
+
+	<!-- containers for stats block and charts -->
+	<div class="chart container">
+		<div class="chart_inner">
+			<!-- exclusive to state level below-->
+			<!-- exclusive to state level below-->
+			<div class="state_header state_container" style="display: none;">
+        <div class="row">
+        <div class="col-xs-12">
+				  <h1 class="header_title"></h1>
+        </div>
+				<div class="header_block col-sm-4">
+					<h3 class="role_title school_stat_title">Senator(s)</h3>
+					<!-- here append info from JSON -->
+				</div>
+				<div class="header_block col-sm-8">
+					<h3 class="role_title school_stat_title">Contact Organization(s)</h3>
+					<!-- here append info from JSON -->
+				</div>
+      </div>
+			</div>
+			<!-- exclusive to state level above-->
+			<!-- exclusive to state level above-->
+			<!-- /// -->
+			<!-- exclusive to congressional district level below -->
+			<!-- exclusive to congressional district level below -->
+			<div class="state_header congressional_dis_container" style="display: none;">
+				<h2 class="header_title"></h2>
+				<div class="header_block">
+					<select class="drop_down_list" onchange="navigateTo(this);">
+					<option>Schools in this district</option>
+					<!-- options being appended here -->
+					</select>
+					<h3 class="role_title">Representative</h3>
+					<!-- here append info from JSON -->
+				</div>
+			</div>
+			<!-- exclusive to congressional district level above -->
+			<!-- exclusive to congressional district level above -->
+			<!-- /// -->
+			<!-- exclusive to school district level below -->
+			<!-- exclusive to school district level below -->
+			<div class="state_header school_dis_container" style="display: none;">
+				<h2 class="header_title"></h2>
+				<select class="drop_down_list" onchange="navigateTo(this);">
+				<option>Schools in this district</option>
+				</select>
+			</div>
+			<!-- exclusive to school district level above -->
+			<!-- exclusive to school district level above -->
+			<!-- /// -->
+			<!-- exclusive to school mgmt company level below -->
+			<!-- exclusive to school mgmt company level below -->
+			<div class="state_header mgmt_company_container" style="display: none;">
+				<h2 class="header_title"></h2>
+				<select class="drop_down_list" onchange="navigateTo(this);">
+				<option>States managed by this company</option>
+				</select>
+			</div>
+			<!-- exclusive to school mgmt company level above -->
+			<!-- exclusive to school mgmt company level above -->
+			<!-- /// -->
+			<!-- exclusive to school authorizer level below -->
+			<!-- exclusive to school authorizer level below -->
+			<div class="state_header authorizer_container" style="display: none">
+				<h2 class="header_title"></h2>
+				<select class="drop_down_list" onchange="navigateTo(this);">
+				<option>Charter schools by this authorizer</option>
+				</select>
+			</div>
+			<!-- exclusive to school authorizer level above -->
+			<!-- exclusive to school authorizer level above -->
+			<!-- /// -->
+			<!-- exclusive to school school level below -->
+			<!-- exclusive to school school level below -->
+			<div class="state_header school_container" style="display: none;">
+				<h2 class="header_title"></h2>
+				<div class="header_block col-sm-6">
+					<h4 class="role_title school_stat_title school_dis">School District</h4>
+					<h4 class="role_title school_stat_title year_open">Year Opened</h4>
+					<h4 class="role_title school_stat_title mgmt_type">Management Type</h4>
+					<h4 class="role_title school_stat_title chart_type">Charter Type</h4>
+					<h4 class="role_title school_stat_title school_loc">School Locale</h4>
+					<!-- here append info from JSON -->
+				</div>
+				<div class="header_block col-sm-6">
+					<h4 class="role_title school_stat_title cong_dis">Congressional District</h4>
+					<h4 class="role_title school_stat_title grades">Grades</h4>
+					<h4 class="role_title school_stat_title mgmt_company">Management Company</h4>
+					<h4 class="role_title school_stat_title curriculum">Curriculum Type</h4>
+					<h4 class="role_title school_stat_title authorizer">Authorizer</h4>
+					<!-- here append info from JSON -->
+				</div>
+			</div>
+			<!-- exclusive to school school level above -->
+			<!-- exclusive to school school level above -->
+			<div class="chart_container"></div>
+		</div>
+	</div>
+
+	<!-- year slider -->
+	<div class="slider">
+		<div class="slider_inner">
+	    <div id="slider">
+			  <div id="custom-handle" class="ui-slider-handle"></div>
+			</div>
+	  </div>
+	</div>
+
+	<!-- container for map -->
+	<div class="map">
+		<div id="map_inner">
+			<div class="sk-fading-circle">
+			  <div class="sk-circle1 sk-circle"></div>
+			  <div class="sk-circle2 sk-circle"></div>
+			  <div class="sk-circle3 sk-circle"></div>
+			  <div class="sk-circle4 sk-circle"></div>
+			  <div class="sk-circle5 sk-circle"></div>
+			  <div class="sk-circle6 sk-circle"></div>
+			  <div class="sk-circle7 sk-circle"></div>
+			  <div class="sk-circle8 sk-circle"></div>
+			  <div class="sk-circle9 sk-circle"></div>
+			  <div class="sk-circle10 sk-circle"></div>
+			  <div class="sk-circle11 sk-circle"></div>
+			  <div class="sk-circle12 sk-circle"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- page/chart/map configuration variables -->
+	<script type="text/javascript" src="js/page_config.js"></script>
+	<!-- top navigation -->
+	<script type="text/javascript" src="js/nav.js"></script>
+	<!-- UIs except for top navigation -->
+	<script type="text/javascript" src="js/ui.js"></script>
+	<!-- script for charts drawing -->
+	<script type="text/javascript" src="js/charts.js"></script>
+	<!-- enable components and scripts according to hash values -->
+	<script type="text/javascript" src="js/components.js"></script>
+ </body>
+ </html>

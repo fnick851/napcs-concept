@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700");
+* {
+  font-family: "Montserrat", sans-serif; }
+
+a {
+  font-weight: 100;
+  color: #333333; }
+  a:hover {
+    color: #009fc3; }
+
+.blue-bar {
+  background-color: #00577a;
+  color: white;
+  padding-top: 10px; }
+  .blue-bar h2 {
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 0px; }
+
+.block {
+  height: 250px;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.title-area .region {
+  color: #00577a;
+  font-size: 24px;
+  font-weight: 100;
+  margin-top: 10px;
+  margin-bottom: 0px; }
+  .title-area .region:after {
+    display: block;
+    font-weight: 400; }
+
+.vertical-text {
+  color: white;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: left top 0;
+  display: inline-block;
+  position: relative;
+  top: 250px;
+  height: 35px;
+  width: 250px;
+  padding-top: 7.5px;
+  text-align: center; }
+
+.schools .title-area .region:after {
+  color: #ef8341;
+  content: "Schools"; }
+.schools .row-bg {
+  background-color: #fef7f2; }
+.schools .charter-public-schools .vertical-text {
+  background-color: #ef8341; }
+.schools .non-charter-public-schools .vertical-text {
+  background-color: #91664c; }
+
+.students .title-area .region:after {
+  color: #009fc3;
+  content: "Students"; }
+.students .row-bg {
+  background-color: #ebf5fa; }
+.students .charter-public-schools .vertical-text {
+  background-color: #009fc3; }
+.students .non-charter-public-schools .vertical-text {
+  background-color: #00577a; }
+
+.state-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 250px;
+  line-height: 12px; }
+
+.new-york {
+  background-image: url("../img/new-york.png");
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: 90% 15%; }
+
+.total-chart {
+  border-top: 1px solid gray;
+  height: 250px;
+  color: white;
+  background-image: url("../img/total-chart.png");
+  background-size: 89%;
+  background-repeat: no-repeat;
+  background-position: -2px 3px; }
+
+/*# sourceMappingURL=dashboard.css.map */

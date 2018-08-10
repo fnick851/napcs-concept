@@ -1,0 +1,17 @@
+{
+	"authorizer": "Example Authorizer",
+	"schools_by_authorizer": [
+		{"school": "Example school 1", "URL": "stateName1&schoolName1"},
+		{"school": "Example school 2", "URL": "stateName2&schoolName2"},
+		{"school": "Example school 3", "URL": "stateName3&schoolName3"},
+		{"school": "...", "URL": "stateName&schoolName"},
+		{"school": "Example school N", "URL": "stateNameN&schoolNameN"}
+	],
+	"latest_data": {
+		"locale": 2014,
+		"mgmt_type": 2014,
+		"lunch": 2014,
+		"race": 2014,
+		"total": 2014
+	}
+}

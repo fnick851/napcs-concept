@@ -1,0 +1,89 @@
+/*style for donuts*/
+.arc text {
+  text-anchor: middle;
+  font-family: 'Lato', sans-serif;
+}
+
+.arc path {
+  stroke: #e7e8e8;
+}
+
+.donutTitleText {
+	fill: #45787f;
+	font-size: 13pt;
+	text-anchor: middle;
+
+}
+
+.donutTitleNumber {
+  fill: #45787f;
+  font-size: 30px;
+  text-anchor: middle;
+}
+
+.donutTitleNotAvailable {
+  fill: #45787f;
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+
+/*style for bar*/
+.barSchools:hover {
+  fill: #fddcb1;
+}
+.barStudents:hover {
+  fill: #657e9b;
+}
+
+.axis--x path {
+  display: none;
+}
+
+
+
+
+/*style for stacked bar*/
+.axis .domain {
+  display: none;
+}
+
+.barTitle {
+  fill: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid grey;
+  padding: 2px;
+  text-align: center;
+}
+
+.back_button {
+  cursor: pointer;
+  font-size: 15px;
+  fill: #1c5a7d;
+}
+
+.plain_donut {
+  cursor: pointer;
+}
+
+.race_donut {
+  cursor: pointer;
+}
+.mgmt_type_donut {
+  cursor: pointer;
+}
+.locale_donut {
+  cursor: pointer;
+}
+.free_lunch_donut {
+  cursor: pointer;
+}

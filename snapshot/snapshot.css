@@ -1,0 +1,39 @@
+.mgmt_company_states_title {
+	color: orange;
+}
+
+.school-sub {
+	color: #00a1b0;
+	font-size: 12px;
+}
+
+.school_dyn_stats {
+	font-size: 10px;
+}
+
+.school-state-info {
+	height: 350px;
+}
+
+.new-york {
+	background-image: none;
+}
+
+.total-chart {
+	background-image: none;
+}
+
+.domain {
+	display: none;
+}
+
+line {
+	stroke: #D3D3D3;
+}
+
+.bottom-border {
+  background-image: url("NAPCS-logo-snapshot-2x.png");
+  background-size: 8%;
+  background-repeat: no-repeat;
+  background-position: right 10px; 
+}

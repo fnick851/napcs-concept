@@ -1,0 +1,23 @@
+{
+	"name": "Example Management Company",
+	"type": {
+		"2005": "CMO",
+		"2006": "CMO",
+		"2007": "CMO",
+		"2008": "CMO",
+		"2009": "CMO",
+		"2010": "CMO",
+		"2011": "CMO",
+		"2012": "Freestanding",
+		"2013": "CMO",
+		"2014": "CMO"
+	},
+	"states_by_mgmt": ["California", "New York", "Maryland"],
+	"latest_data": {
+		"locale": 2014,
+		"mgmt_type": 2014,
+		"lunch": 2014,
+		"race": 2014,
+		"total": 2014
+	}
+}

@@ -1,0 +1,174 @@
+//Font
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700');
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+//Colors
+$blue-white: #ebf5fa;
+$blue-lighter: #c5e6f0;
+$blue-light: #c5e6f0;
+$blue: #009fc3;
+$blue-dark: #7891ac;
+$blue-darkest: #00577a;
+$orange-white: #fef7f2;
+$orange-light: #fbd19a;
+$orange: #ef8341;
+$yellow: #e1da1a;
+$brown: #91664c;
+$gray: #9d9fa2;
+
+//Link Styles
+a {
+  font-weight: 100;
+  color: rgb(51,51,51);
+  &:hover {
+    color: $blue;
+  }
+}
+
+//Top bar
+.blue-bar {
+  background-color: $blue-darkest;
+  color: white;
+  padding-top: 10px;
+  h2 {
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 0px;
+  }
+}
+
+//Set Blocks to Consistent Size
+.block {
+  height: 250px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+//Title Area Global Styles
+.title-area {
+  .region {
+    color: $blue-darkest;
+    font-size: 24px;
+    font-weight: 100;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    &:after {
+      display: block;
+      font-weight: 400;
+    }
+  }
+}
+
+.vertical-text {
+  color: white;
+  transform: rotate(-90deg);
+  transform-origin: left top 0;
+  display: inline-block;
+  position: relative;
+  top: 250px;
+  height: 35px;
+  width: 250px;
+  padding-top: 7.5px;
+  text-align: center;
+}
+
+//Schools Page Element Styles
+.schools {
+  .title-area {
+    .region:after {
+      color: $orange;
+      content: "Schools";
+    }
+  }
+  .row-bg {
+    background-color: $orange-white;
+  }
+  .charter-public-schools .vertical-text {
+    background-color: $orange;
+  }
+
+  .non-charter-public-schools .vertical-text {
+    background-color: $brown;
+  }
+}
+
+//Students Page Element Styles
+.students {
+  .title-area {
+    .region:after {
+      color: $blue;
+      content: "Students";
+    }
+  }
+  .row-bg {
+    background-color: $blue-white;
+  }
+  .charter-public-schools .vertical-text {
+    background-color: $blue;
+  }
+
+  .non-charter-public-schools .vertical-text {
+    background-color: $blue-darkest;
+  }
+}
+
+.state-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 250px;
+  line-height: 12px;
+}
+
+.new-york {
+  background-image: url("../img/new-york.png");
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: 90% 15%;
+}
+
+.total-chart {
+  border-top: 1px solid gray;
+  height: 250px;
+  color: white;
+  background-image: url("../img/total-chart.png");
+  background-size: 89%;
+  background-repeat: no-repeat;
+  background-position: -2px 3px;
+}
+
+//Unused
+
+//Hover Style Mixins
+// @mixin hover-style ($color) {
+//   color: lighten($color, 10%) !important;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+//
+// @mixin hover-style-bg ($color) {
+//   background-color: lighten($color, 10%) !important;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+//
+// .chart1 {
+//     background-image: url("../img/chart1.png");
+//     background-size: 98%;
+//     background-repeat: no-repeat;
+//     background-position: 23px -3px;
+// }
+// .chart2 {
+//     background-image: url("../img/chart2.png");
+//     background-size: 98%;
+//     background-repeat: no-repeat;
+//     background-position: 15px -18px;
+// }
+// .chart3 {
+//     background-image: url("../img/chart3.png");
+//     background-size: 98%;
+//     background-repeat: no-repeat;
+//     background-position: 15px -14px;
+// }

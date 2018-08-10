@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Snapshot</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jquery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="bootstrap.css" />
+    <!-- local map stylesheet -->
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <!-- snapshot additional styling -->
+    <link rel="stylesheet" type="text/css" href="snapshot.css">
+    <!-- print stylesheet -->
+    <link rel="stylesheet" type="text/css" href="print.css">
+    
+    <!-- d3 -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="blue-bar col-sm-12">
+      <h2 class="snapshot-text">SNAPSHOT</h1>
+      <p class="data-time pull-right">
+        Latest available data.
+      </p>
+    </div><!-- /.blue-bar -->
+  </div><!-- /.row -->
+
+  <div class="title-area">
+      <h1 class="region"></h1>
+    </div><!-- /.title-area -->
+  <div class="row grid">
+    <div class="left-side col-xs-6" style="padding-right: 0">
+
+
+    <div class="chart1 block">
+      <div class="chart_container1"></div>
+    </div>
+    <div class="chart2 block charter-public-schools">
+      <a class="vertical-text">
+        Charter Public Schools
+      </a>
+      <div class="chart_container2"></div>
+    </div>
+    <div class="chart3 block non-charter-public-schools">
+      <a class="vertical-text">
+        Non-Charter Public Schools
+      </a>
+      <div class="chart_container3"></div>
+    </div>
+      </div><!-- /.left-side -->
+
+    <div class="right-side col-xs-6" style="padding-left: 0">
+      <div class="state-info new-york block">
+        <div id="text-info" class="col-xs-6"></div>
+        <div id="map" class="col-xs-6" style="min-height: 250px; max-width: 250px;">
+      </div>
+    </div><!-- /.state-info -->
+    <div class="chart4 block total-chart">
+    </div>
+    <div class="chart5 block">
+    </div>
+    </div><!-- /.right-side -->
+  </div><!-- /.row -->
+
+  <div class="total-chart bottom-border">
+  </div><!-- /.row -->
+</div>
+
+<script type="text/javascript" src="viz.js"></script>
+<script type="text/javascript" src="draw.js"></script>
+</body>
+</html>

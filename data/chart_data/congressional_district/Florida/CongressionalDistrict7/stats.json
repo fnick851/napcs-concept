@@ -1,0 +1,19 @@
+{
+	"district": "(Example) Congressional District 7",
+	"schools_in_district": [
+		{"school": "Example school 1", "URL": "Arizona&exampleSchool"},
+		{"school": "Example school 2", "URL": "Arizona&exampleSchool"},
+		{"school": "Example school 3", "URL": "Arizona&exampleSchool"},
+		{"school": "Example school 4", "URL": "Arizona&exampleSchool"}
+	],
+	"representative": {
+		"Joe Doe": "http://joedoe.com"
+	},
+	"latest_data": {
+		"locale": 2014,
+		"mgmt_type": 2014,
+		"lunch": 2014,
+		"race": 2014,
+		"total": 2014
+	}
+}
