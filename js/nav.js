@@ -60,24 +60,24 @@ $(".nav_submit").click(
 			var chosen_state = input_field1.val()
 			var chosen_key = input_field2.val()
 			if ($(this).hasClass("school_dis_go")) {
-                window.location = "index.html#school_district&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'').replace(/\./g,'')
-                // window.location = "index.html#school_district&Wyoming&JohnsonCountySchoolDistrict1"
+                // window.location = "index.html#school_district&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'').replace(/\./g,'')
+                window.location = "index.html#school_district&Wyoming&JohnsonCountySchoolDistrict1"
 			}
 			if ($(this).hasClass("congress_dis_go")) {
-				window.location.href = "index.html#congressional_district&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'')
-				// window.location = "index.html#congressional_district&Florida&CongressionalDistrict7"
+				// window.location.href = "index.html#congressional_district&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'')
+				window.location = "index.html#congressional_district&Florida&CongressionalDistrict7"
 			}
 			if ($(this).hasClass("mgmt_company_go")) {
-				window.location.href = "index.html#mgmt_company&"+chosen_key.replace(/ /g,'')
-				// window.location = "index.html#mgmt_company&exampleMgmtCompany"
+				// window.location.href = "index.html#mgmt_company&"+chosen_key.replace(/ /g,'')
+				window.location = "index.html#mgmt_company&exampleMgmtCompany"
 			}
 			if ($(this).hasClass("authorizer_go")) {
-				window.location.href = "index.html#authorizer&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'')
-				// window.location = "index.html#authorizer&Arizona&exampleAuthorizer"
+				// window.location.href = "index.html#authorizer&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'')
+				window.location = "index.html#authorizer&Arizona&exampleAuthorizer"
 			}
 			if ($(this).hasClass("school_go")) {
-				window.location.href = "index.html#school&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'').replace(/\./g,'')
-				// window.location = "index.html#school&Arizona&exampleSchool"
+				// window.location.href = "index.html#school&"+chosen_state.replace(/ /g,'')+"&"+chosen_key.replace(/ /g,'').replace(/\./g,'')
+				window.location = "index.html#school&Arizona&exampleSchool"
 			}
 		} else {
 			// otherwise, the user is on the state level

@@ -1,0 +1,6 @@
+{
+	"exampleMgmtCompany" : {
+		"name": "Fake Manamge Company",
+		"states": ["Arizona", "New York", "Kansas", "Texas", "Washington"]
+	}
+}
